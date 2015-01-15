@@ -23,6 +23,7 @@ public class AddFileDialog extends JFileChooser {
         }
         setCurrentDirectory(directory);
         this.problemType = problemType;
+        System.out.println( "Problem type: " + problemType );
         for (ProblemType type : knownTypes ) {
             if (type == ProblemType.UNSPECIFIED ) {
                 continue;
