@@ -2,8 +2,10 @@ package de.tu_berlin.math.coga.batch.input;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -15,10 +17,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FileFormats {
   private final LinkedList<FileFormat> knownFileFormats = new LinkedList<>();
   private final List<String> extensionList = new LinkedList<>();
+  private final Set<ProblemType> solvableTypes = new HashSet<>();
   
   public void registerFileFormat( FileFormat f ) {
     knownFileFormats.add( f );
     extensionList.addAll( f.getExtensions() );
+    solvableTypes.add( f.getProblemType() );
   }
 
   /**
@@ -73,5 +77,9 @@ public class FileFormats {
 
   public List<String> getAllKnownExtensions() {
     return Collections.unmodifiableList( extensionList );
+  }
+
+  public Iterable<ProblemType> getKnownTypes() {
+    return solvableTypes;
   }
 }

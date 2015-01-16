@@ -21,11 +21,11 @@ public class ProblemType {
   private final Icon icon;
   private final String[] propertyNames;
 
-  private ProblemType( String description, String properties ) {
+  public ProblemType( String description, String properties ) {
     this( description, properties, new ImageIcon( "./icons/document_24.png" ) );
   }
 
-  private ProblemType( String description, String properties, Icon icon ) {
+  public ProblemType( String description, String properties, Icon icon ) {
     this.description = description;
     this.icon = icon;
     this.propertyNames = properties.split( "\\s*,\\s*" );

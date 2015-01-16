@@ -5,6 +5,7 @@ import de.tu_berlin.math.coga.batch.input.FileFormats;
 import de.tu_berlin.math.coga.batch.input.ProblemType;
 import java.io.File;
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JFileChooser;
 
 /**
@@ -13,25 +14,21 @@ import javax.swing.JFileChooser;
  * @author Jan-Philipp Kappmeier
  */
 public class AddFileDialog extends JFileChooser {
-    
-    private ProblemType problemType;
-    private LinkedList<ProblemType> knownTypes;
-    private FileFormats formats;
-    
-    public AddFileDialog(ProblemType problemType) {
+    public AddFileDialog( FileFormats formats ) {
         super();
         File directory = new File(System.getProperty("user.dir") + "/examples");
         if (!directory.exists()) {
             directory = new File(System.getProperty("user.dir"));
         }
         setCurrentDirectory(directory);
-        this.problemType = problemType;
-        System.out.println( "Problem type: " + problemType );
-        for (ProblemType type : knownTypes ) {
+        //this.problemType = problemType;
+        //System.out.println( "Problem type: " + problemType );
+        //for (ProblemType type : problemTypes ) {
+        for (ProblemType type : formats.getKnownTypes() ) {
             if (type == ProblemType.UNSPECIFIED ) {
                 continue;
             }
-            addChoosableFileFilter( formats.getFileFilter( problemType ) );
+            addChoosableFileFilter( formats.getFileFilter( type ) );
             //addChoosableFileFilter(type.getFileFilter( ));
         }
         setAcceptAllFileFilterUsed(true);
@@ -41,18 +38,18 @@ public class AddFileDialog extends JFileChooser {
         setMultiSelectionEnabled(true);        
     }
 
-    public AddFileDialog() {
-        this(null);
-    }
+    //public AddFileDialog() {
+    //    this(null);
+    //}
 
-    public ProblemType getProblemType() {
-        return problemType;
-    }
+    //public ProblemType getProblemType() {
+    //    return problemType;
+    //}
 
-    public void setProblemType(ProblemType problemType) {
-        this.problemType = problemType;
-        if (problemType != null) {
-            setFileFilter( formats.getFileFilter( problemType ) );
-        }
-    }
+    //public void setProblemType(ProblemType problemType) {
+        //this.problemType = problemType;
+        //if (problemType != null) {
+    //        setFileFilter( formats.getFileFilter( problemType ) );
+        //}
+    //}
 }

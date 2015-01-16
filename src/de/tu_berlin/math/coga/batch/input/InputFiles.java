@@ -1,6 +1,7 @@
 
 package de.tu_berlin.math.coga.batch.input;
 
+import de.tu_berlin.math.coga.batch.gui.JBatch;
 import de.tu_berlin.math.coga.batch.gui.dialog.AddFileDialog;
 import java.awt.Component;
 import java.io.File;
@@ -18,9 +19,11 @@ import javax.swing.JFileChooser;
 public class InputFiles implements Input {
   private AddFileDialog dialog;
   private Component parent;
+  private JBatch batch;
 
-  public InputFiles( Component parent ) {
+  public InputFiles( Component parent, JBatch batch ) {
     this.parent = parent;
+    this.batch = batch;
   }
 
   protected Component getParent() {
@@ -30,7 +33,7 @@ public class InputFiles implements Input {
   @Override
   public Iterator<File> iterator() {
     if( dialog == null ) {
-      dialog = new AddFileDialog();//batch.getComputation().getType());
+      dialog = new AddFileDialog( batch.getFileFormats() );//batch.getComputation().getType());
     }
     int decision = dialog.showOpenDialog( parent );
     if( decision == JFileChooser.APPROVE_OPTION ) {
@@ -40,11 +43,9 @@ public class InputFiles implements Input {
     return Collections.emptyIterator();
   }
 
-  FileFormats formats;
-  
   protected List<File> addInputFiles( File[] selectedFiles, boolean recursive, boolean followingLinks ) {
     FileCrawler crawler = new FileCrawler( recursive, followingLinks );
-    List<String> extensions = formats.getAllKnownExtensions(); //FileFormatEnum.getAllKnownExtensions();
+    List<String> extensions = batch.getFileFormats().getAllKnownExtensions();
     List<File> files = new LinkedList<>();
     for( File file : selectedFiles ) {
       if( file.isDirectory() ) {

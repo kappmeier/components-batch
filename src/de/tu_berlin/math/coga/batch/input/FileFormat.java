@@ -22,11 +22,12 @@ public class FileFormat {
 
   public final static FileFormat UNKNOWN = new FileFormat( ProblemType.UNSPECIFIED, UnknownFileReader.class, "Unknown File Format" );
   
-  private FileFormat( ProblemType problemType, Class<? extends InputFileReader> reader, String description, String... extensions ) {
+  public FileFormat( ProblemType problemType, Class<? extends InputFileReader> reader, String description, String... extensions ) {
     this( problemType, reader, description, new ImageIcon( "./icons/document_24.png" ), extensions );
   }
 
-  private FileFormat( ProblemType problemType, Class<? extends InputFileReader> reader, String description, Icon icon, String... extensions ) {
+  
+  public FileFormat( ProblemType problemType, Class<? extends InputFileReader> reader, String description, Icon icon, String... extensions ) {
     this.description = description;
     this.extensions.addAll( Arrays.asList( extensions ) );
     this.icon = icon;

@@ -26,6 +26,7 @@ import de.tu_berlin.math.coga.batch.gui.action.BatchAction;
 import de.tu_berlin.math.coga.batch.input.Input;
 import de.tu_berlin.math.coga.batch.gui.action.InputAction;
 import de.tu_berlin.math.coga.batch.gui.action.OutputAction;
+import de.tu_berlin.math.coga.batch.input.FileFormat;
 import de.tu_berlin.math.coga.batch.input.FileFormats;
 import de.tu_berlin.math.coga.batch.output.Output;
 import java.awt.BorderLayout;
@@ -173,12 +174,22 @@ public class JBatch extends JPanel {
     outputPane.add( action );
   }
 
-  private FileFormats fileFormats;
+  private FileFormats fileFormats = new FileFormats();
+  
+  public FileFormats getFileFormats() {
+    return fileFormats;
+  }
+  
+  public final void registerFileFormat( FileFormat fileFormat ) {
+    fileFormats.registerFileFormat( fileFormat );
+  }
+  
+  
   
   public void addInput( Input input ) {
     for( Computation computation : selectionListener.getSelectedComputations() ) {
 			final InputList inputList = computation.getInputs();
-			for( File file : input ) {        
+			for( File file : input ) {
 				final InputFile inputFile = new InputFile( file, fileFormats );
 				if( !inputList.contains( inputFile ) ) {
 					inputList.add( inputFile );

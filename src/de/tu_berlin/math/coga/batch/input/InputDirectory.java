@@ -1,5 +1,6 @@
 package de.tu_berlin.math.coga.batch.input;
 
+import de.tu_berlin.math.coga.batch.gui.JBatch;
 import de.tu_berlin.math.coga.batch.gui.dialog.AddDirectoryWizard;
 import java.awt.Component;
 import java.io.File;
@@ -14,8 +15,8 @@ import java.util.List;
  */
 public class InputDirectory extends InputFiles {
 
-  public InputDirectory( Component parent ) {
-    super( parent );
+  public InputDirectory( Component parent, JBatch batch ) {
+    super( parent, batch );
   }
 
   @Override

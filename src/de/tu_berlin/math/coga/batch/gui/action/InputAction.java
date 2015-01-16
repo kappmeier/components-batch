@@ -21,6 +21,7 @@ public class InputAction extends BatchAction {
 
   @Override
   public void actionPerformed( ActionEvent ae ) {
+    System.err.println( "Action performed" );
     batch.addInput( input );
   }
 }
