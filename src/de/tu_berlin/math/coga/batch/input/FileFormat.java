@@ -20,7 +20,7 @@ public class FileFormat {
   private final ProblemType problemType;
   private final Class<? extends InputFileReader> reader;
 
-  public final static FileFormat UNKNOWN = new FileFormat(ProblemTypeEnum.UNSPECIFIED, UnknownFileReader.class, "Unknown File Format" );
+  public final static FileFormat UNKNOWN = new FileFormat( ProblemType.UNSPECIFIED, UnknownFileReader.class, "Unknown File Format" );
   
   private FileFormat( ProblemType problemType, Class<? extends InputFileReader> reader, String description, String... extensions ) {
     this( problemType, reader, description, new ImageIcon( "./icons/document_24.png" ), extensions );

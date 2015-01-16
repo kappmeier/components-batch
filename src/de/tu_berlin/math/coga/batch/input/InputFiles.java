@@ -40,9 +40,11 @@ public class InputFiles implements Input {
     return Collections.emptyIterator();
   }
 
+  FileFormats formats;
+  
   protected List<File> addInputFiles( File[] selectedFiles, boolean recursive, boolean followingLinks ) {
     FileCrawler crawler = new FileCrawler( recursive, followingLinks );
-    List<String> extensions = FileFormatEnum.getAllKnownExtensions();
+    List<String> extensions = formats.getAllKnownExtensions(); //FileFormatEnum.getAllKnownExtensions();
     List<File> files = new LinkedList<>();
     for( File file : selectedFiles ) {
       if( file.isDirectory() ) {

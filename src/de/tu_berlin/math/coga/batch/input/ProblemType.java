@@ -35,31 +35,6 @@ public class ProblemType {
     return description;
   }
 
-  public List<String> getExtensions() {
-    if( extensions == null ) {
-      extensions = new LinkedList<>();
-      for( FileFormatEnum format : FileFormatEnum.values() ) {
-        if( format.getProblemType() == this ) {
-          extensions.addAll( Arrays.asList( format.getExtensions() ) );
-        }
-      }
-      fileFilter = new FileNameExtensionFilter( description, extensions.toArray( new String[0] ) );
-    }
-    return extensions;
-  }
-
-  public FileFilter getFileFilter() {
-    if( fileFilter == null ) {
-      extensions = new LinkedList<>();
-      for( FileFormatEnum format : FileFormatEnum.values() ) {
-        if( format.getProblemType() == this ) {
-          extensions.addAll( Arrays.asList( format.getExtensions() ) );
-        }
-      }
-      fileFilter = new FileNameExtensionFilter( description, extensions.toArray( new String[0] ) );
-    }
-    return fileFilter;
-  }
 
   public Icon getIcon() {
     return icon;

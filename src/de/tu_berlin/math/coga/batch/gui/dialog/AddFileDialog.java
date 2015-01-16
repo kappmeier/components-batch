@@ -1,6 +1,7 @@
 
 package de.tu_berlin.math.coga.batch.gui.dialog;
 
+import de.tu_berlin.math.coga.batch.input.FileFormats;
 import de.tu_berlin.math.coga.batch.input.ProblemType;
 import java.io.File;
 import java.util.LinkedList;
@@ -9,11 +10,13 @@ import javax.swing.JFileChooser;
 /**
  *
  * @author Martin Groß
+ * @author Jan-Philipp Kappmeier
  */
 public class AddFileDialog extends JFileChooser {
     
     private ProblemType problemType;
     private LinkedList<ProblemType> knownTypes;
+    private FileFormats formats;
     
     public AddFileDialog(ProblemType problemType) {
         super();
@@ -28,7 +31,8 @@ public class AddFileDialog extends JFileChooser {
             if (type == ProblemType.UNSPECIFIED ) {
                 continue;
             }
-            addChoosableFileFilter(type.getFileFilter());            
+            addChoosableFileFilter( formats.getFileFilter( problemType ) );
+            //addChoosableFileFilter(type.getFileFilter( ));
         }
         setAcceptAllFileFilterUsed(true);
         setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -48,7 +52,7 @@ public class AddFileDialog extends JFileChooser {
     public void setProblemType(ProblemType problemType) {
         this.problemType = problemType;
         if (problemType != null) {
-            setFileFilter(problemType.getFileFilter());
+            setFileFilter( formats.getFileFilter( problemType ) );
         }
     }
 }

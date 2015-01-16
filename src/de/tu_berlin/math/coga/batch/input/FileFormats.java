@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Collects all file formats.
@@ -37,6 +39,36 @@ public class FileFormats {
       }
     }
     return FileFormat.UNKNOWN;
+  }
+
+  public List<String> getExtensions( ProblemType problemType ) {
+    List<String> extensions;
+    //if( extensions == null ) {
+      extensions = new LinkedList<>();
+      for( FileFormat format : knownFileFormats ) { //FileFormatEnum.values() ) {
+        if( format.getProblemType() == problemType ) {
+          //extensions.addAll( Arrays.asList( format.getExtensions() ) );
+          extensions.addAll( format.getExtensions() );
+        }
+      }
+      //fileFilter = new FileNameExtensionFilter( description, extensions.toArray( new String[0] ) );
+    //}
+    return extensions;
+  }
+
+  public FileFilter getFileFilter( ProblemType problemType ) {
+    FileFilter fileFilter;
+    //if( fileFilter == null ) {
+      //extensions = new LinkedList<>();
+      //for( FileFormat format : formats ) { //FileFormatEnum.values() ) {
+      //  if( format.getProblemType() == this ) {
+      //    extensions.addAll( format.getExtensions() );
+      //  }
+      //}
+      //fileFilter = new FileNameExtensionFilter( description, extensions.toArray( new String[0] ) );
+    fileFilter = new FileNameExtensionFilter( problemType.getDescription(), getExtensions( problemType ).toArray( new String[0] ) );
+    
+    return fileFilter;
   }
 
   public List<String> getAllKnownExtensions() {
