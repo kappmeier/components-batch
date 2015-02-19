@@ -4,7 +4,7 @@
  */
 package org.zetool.components.batch.gui.input;
 
-import org.zetool.components.batch.plugins.AlgorithmicPlugin;
+import org.zetool.components.batch.plugins.BatchAlgorithm;
 import org.zetool.components.batch.operations.AtomicOperation;
 import java.util.Enumeration;
 import javax.swing.ImageIcon;
@@ -20,7 +20,7 @@ public class OperationAlgorithmSelectNode extends BatchTreeTableNode<AtomicOpera
 	public OperationAlgorithmSelectNode( AtomicOperation<?, ?> data ) {
 		super( data, new String[0], new ImageIcon("./icons/algo_24.png") );
 			int i = 0;
-			for( AlgorithmicPlugin<?,?> plugin : data ) {
+			for( BatchAlgorithm<?,?> plugin : data ) {
 				add( new AlgorithmPluginNode( plugin, i == data.getIndex() ) );
 			}
 

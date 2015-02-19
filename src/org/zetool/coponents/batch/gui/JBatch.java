@@ -1,7 +1,7 @@
 
 package org.zetool.coponents.batch.gui;
 
-import org.zetool.components.batch.plugins.AlgorithmicPlugin;
+import org.zetool.components.batch.plugins.BatchAlgorithm;
 import com.l2fprod.common.propertysheet.PropertySheetPanel;
 import com.l2fprod.common.swing.JTaskPane;
 import com.l2fprod.common.swing.JTaskPaneGroup;
@@ -36,7 +36,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.Icon;
@@ -95,7 +97,7 @@ public class JBatch extends JPanel {
 		table.getTree().addTreeSelectionListener( selectionListener = new InputSelectionListener() );
 		table.getTree().addKeyListener( keyListener = new InputKeyListener() );
 
-		table.getTree().addMouseListener( new MouseAdapter() {
+		table.getTree().addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked( MouseEvent e ) {
@@ -111,7 +113,7 @@ public class JBatch extends JPanel {
 					Object p = selectedPath.getLastPathComponent();
 					if( p instanceof AlgorithmPluginNode ) {
 						AlgorithmPluginNode pluginNode = (AlgorithmPluginNode)p;
-						AlgorithmicPlugin<?, ?> selectedPlugin = pluginNode.getUserObject();
+						BatchAlgorithm<?, ?> selectedPlugin = pluginNode.getUserObject();
 						System.out.println( "Plugin: " + selectedPlugin );
 						// Activate the node and deactivate all other!
 						OperationAlgorithmSelectNode selectNode = (OperationAlgorithmSelectNode)pluginNode.getParent();
@@ -125,7 +127,7 @@ public class JBatch extends JPanel {
 							AlgorithmPluginNode otherPlugin = a.nextElement();
 							if( index == selectedIndex ) {
 								AtomicOperation<?, ?> ao = selectNode.getUserObject();
-								AlgorithmicPlugin<?, ?> plugin = otherPlugin.getUserObject();
+								BatchAlgorithm<?, ?> plugin = otherPlugin.getUserObject();
 								ao.setSelectedAlgorithm( plugin.getAlgorithm() );
 
 								otherPlugin.setSelected( true );
@@ -162,7 +164,24 @@ public class JBatch extends JPanel {
     inputPane.add( action );
   }
 
-  public final void registerOperationAction( Operation operation, String title ) {
+  Collection<BatchAlgorithm<?,?>> algorithms = new HashSet<>();
+  
+  public final void registerAlgorithm( BatchAlgorithm<?,?> algorithm ) {
+    algorithms.add( algorithm );
+  }
+  
+  /**
+   * Registers an operation. Iterates through the available algorithmic plugins and registers the compatible ones
+   * to the operation.
+   * @param operation
+   * @param title 
+   */
+  public final void registerOperationAction( Operation<?,?> operation, String title ) {
+    for( AtomicOperation<?,?> ao : operation.getAtomicOperations() ) {
+      algorithms.stream().forEach( (plugin) -> {
+        ao.registerAlgorithmIfCompatible( plugin );
+      } );
+    }
     OperationAction action = new OperationAction( this, operation, title );
     actions.add( action );
     activityPane.add( action );

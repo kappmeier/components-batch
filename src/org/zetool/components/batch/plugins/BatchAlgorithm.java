@@ -2,14 +2,14 @@
 package org.zetool.components.batch.plugins;
 
 import org.zetool.common.algorithm.Algorithm;
-import net.xeoh.plugins.base.Plugin;
 
 
 /**
  *
  * @author Jan-Philipp Kappmeier
  */
-public interface AlgorithmicPlugin<U,V> extends Plugin {
+//public interface BatchAlgorithm<U,V> extends Plugin {
+public interface BatchAlgorithm<U,V> {
 	public String getName();
 
 	public Class<U> accepts();
