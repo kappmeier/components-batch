@@ -2,3 +2,6 @@
 /build/
 build.xml
 /dist/
+/lib/
+.sonar
+
