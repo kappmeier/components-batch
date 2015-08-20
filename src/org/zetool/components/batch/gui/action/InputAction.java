@@ -1,6 +1,6 @@
 package org.zetool.components.batch.gui.action;
 
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import org.zetool.components.batch.input.Input;
 import java.awt.event.ActionEvent;
 import java.util.Objects;

@@ -1,5 +1,5 @@
 
-package org.zetool.coponents.batch.gui;
+package org.zetool.components.batch.gui;
 
 import org.zetool.components.batch.plugins.BatchAlgorithm;
 import com.l2fprod.common.propertysheet.PropertySheetPanel;

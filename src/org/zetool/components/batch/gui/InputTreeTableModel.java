@@ -1,4 +1,4 @@
-package org.zetool.coponents.batch.gui;
+package org.zetool.components.batch.gui;
 
 import org.zetool.components.batch.gui.input.ComputationListNode;
 import javax.swing.tree.TreeNode;

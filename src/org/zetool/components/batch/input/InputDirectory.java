@@ -1,6 +1,6 @@
 package org.zetool.components.batch.input;
 
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import org.zetool.components.batch.gui.dialog.AddDirectoryWizard;
 import java.awt.Component;
 import java.io.File;

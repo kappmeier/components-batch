@@ -4,7 +4,7 @@ package org.zetool.components.batch.gui.action;
 //import algo.ca.parameter.TestEvacuationParameterSet;
 import org.zetool.components.batch.Computation;
 import org.zetool.components.batch.ComputationList;
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import org.zetool.components.batch.input.InputFile;
 import org.zetool.components.batch.operations.Operation;
 import org.zetool.components.batch.output.Output;

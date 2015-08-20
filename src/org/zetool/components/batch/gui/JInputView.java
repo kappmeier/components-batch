@@ -1,4 +1,4 @@
-package org.zetool.coponents.batch.gui;
+package org.zetool.components.batch.gui;
 
 import org.zetool.components.batch.ComputationList;
 import org.zetool.components.batch.gui.input.BatchTreeTableNode;

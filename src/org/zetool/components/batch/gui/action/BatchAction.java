@@ -1,7 +1,7 @@
 
 package org.zetool.components.batch.gui.action;
 
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

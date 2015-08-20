@@ -2,7 +2,7 @@
 package org.zetool.components.batch.gui.action;
 
 import org.zetool.components.batch.Computation;
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import java.awt.event.ActionEvent;
 
 /**

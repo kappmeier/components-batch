@@ -1,6 +1,6 @@
 package org.zetool.components.coga.batch;
 
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import org.zetool.components.batch.input.FileFormat;
 import org.zetool.components.batch.input.InputDirectory;
 import org.zetool.components.batch.input.InputFiles;

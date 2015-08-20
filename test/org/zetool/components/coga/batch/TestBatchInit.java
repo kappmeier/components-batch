@@ -1,7 +1,7 @@
 package org.zetool.components.coga.batch;
 
 import static org.zetool.components.coga.batch.TestWindow.DIMACS_MAXIMUM_FLOW;
-import org.zetool.coponents.batch.gui.JBatch;
+import org.zetool.components.batch.gui.JBatch;
 import org.zetool.components.batch.input.Input;
 import org.zetool.components.batch.input.InputFiles;
 import java.io.File;
