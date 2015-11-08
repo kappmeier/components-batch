@@ -11,10 +11,10 @@ import java.io.File;
  * @author Martin Groß
  */
 public class UnknownFileReader extends InputFileReader<Void> {
-	@Override
-	public Class<Void> getTypeClass() {
-		return Void.class;
-	}
+    @Override
+    public Class<Void> getTypeClass() {
+        return Void.class;
+    }
 
 
     @Override
