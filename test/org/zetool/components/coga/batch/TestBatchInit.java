@@ -1,14 +1,17 @@
 package org.zetool.components.coga.batch;
 
 import static org.zetool.components.coga.batch.TestWindow.DIMACS_MAXIMUM_FLOW;
-import org.zetool.components.batch.gui.JBatch;
-import org.zetool.components.batch.input.Input;
-import org.zetool.components.batch.input.InputFiles;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
+
 import org.junit.Test;
+
+import org.zetool.components.batch.gui.JBatch;
+import org.zetool.components.batch.input.Input;
+import org.zetool.components.batch.input.InputFiles;
 
 /**
  *
@@ -16,60 +19,62 @@ import org.junit.Test;
  */
 public class TestBatchInit {
 
-  /**
-   * Integration test checking if loading a file works.
-   * @throws java.io.IOException
-   */
-  @Test
-  public void testLoadMatchingFile() throws IOException {
-    // Initialize a batch object,
-    // define input reader
-    // define an input file first
-    
-    final File temp = File.createTempFile( "temp", ".max" );
-    temp.deleteOnExit();
-    
-    final Input testFileInput = () -> {
-      return Arrays.asList( temp ).iterator();
-    };
+    /**
+     * Integration test checking if loading a file works.
+     *
+     * @throws java.io.IOException
+     */
+    @Test
+    public void loadMatchingFile() throws IOException {
+        // Initialize a batch object,
+        // define input reader
+        // define an input file first
 
-    final JBatch b = new JBatch();
+        final File temp = File.createTempFile("temp", ".max");
+        temp.deleteOnExit();
 
-    // Register some file types!
-    b.registerFileFormat( DIMACS_MAXIMUM_FLOW );
-    b.registerInputAction( new InputFiles( b, b ), "Add input file(s)", new ImageIcon( "./icons/document_add_24.png" ) );      
-    try {
-      b.addInput( testFileInput );      
-    } catch( UnsupportedOperationException ex ) {
-      // fine, should throw exception!
-      return;
+        final Input testFileInput = () -> {
+            return Arrays.asList(temp).iterator();
+        };
+
+        final JBatch batch = new JBatch();
+
+        // Register some file types!
+        batch.registerFileFormat(DIMACS_MAXIMUM_FLOW);
+        batch.registerInputAction(new InputFiles(batch, batch), "Add input file(s)", new ImageIcon("./icons/document_add_24.png"));
+        try {
+            batch.addInput(testFileInput);
+        } catch (UnsupportedOperationException ex) {
+            // fine, should throw exception!
+            return;
+        }
+        throw new AssertionError("No exception thrown for input of a file!");
     }
-    throw new AssertionError( "No exception thrown for input of a file!" );
-  }
 
-  /**
-   * Integration test checking if loading a file works.
-   * @throws java.io.IOException
-   */
-  @Test
-  public void testLoadNonMatchingFile() throws IOException {
+    /**
+     * Integration test checking if loading a file works.
+     *
+     * @throws java.io.IOException
+     */
+    @Test
+    public void tryLoadingNonMatchingFile() throws IOException {
     // Initialize a batch object,
-    // define input reader
-    // define an input file first
-    
-    final File temp = File.createTempFile( "temp", ".tmp" );
-    temp.deleteOnExit();
-    
-    final Input testFileInput = () -> {
-      return Arrays.asList( temp ).iterator();
-    };
+        // define input reader
+        // define an input file first
 
-    final JBatch b = new JBatch();
+        final File temp = File.createTempFile("temp", ".tmp");
+        temp.deleteOnExit();
 
-    // Register some file types!
-    b.registerFileFormat( DIMACS_MAXIMUM_FLOW );
-    b.registerInputAction( new InputFiles( b, b ), "Add input file(s)", new ImageIcon( "./icons/document_add_24.png" ) );      
-    b.addInput( testFileInput );      
-    //nothing should happen, because the file type does not match
-  }
+        final Input testFileInput = () -> {
+            return Arrays.asList(temp).iterator();
+        };
+
+        final JBatch batch = new JBatch();
+
+        // Register some file types!
+        batch.registerFileFormat(DIMACS_MAXIMUM_FLOW);
+        batch.registerInputAction(new InputFiles(batch, batch), "Add input file(s)", new ImageIcon("./icons/document_add_24.png"));
+        batch.addInput(testFileInput);
+        //nothing should happen, because the file type does not match
+    }
 }

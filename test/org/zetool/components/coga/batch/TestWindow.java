@@ -11,6 +11,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import org.junit.Test;
 
 /**
  *
@@ -27,6 +28,10 @@ public class TestWindow {
   static FileFormat RMFGEN_MAXIMUM_FLOW = new FileFormat( MAXIMUM_FLOW, TestInputFileReader.class, "RMFGEN Maximum Flow Problem", "rmf" );
   static FileFormat ZET_PROJECT = new FileFormat( EVACUATION_PROJECT, TestInputFileReader.class, "ZET Evacuation Project", new ImageIcon( "./icons/zet_24.png" ), "zet" );
   
+  @Test
+  public void test() {
+      // pass
+  }
   
   public static void main( String args[] ) {
     SwingUtilities.invokeLater( new Runnable() {
