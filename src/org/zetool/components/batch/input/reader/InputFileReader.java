@@ -16,13 +16,17 @@
 package org.zetool.components.batch.input.reader;
 
 import java.io.File;
-import org.zetool.common.algorithm.parameter.Parameter;
+import org.zetool.common.datastructure.parameter.ParameterSet;
+import org.zetool.common.datastructure.parameter.Parameter;
 import org.zetool.common.algorithm.AbstractAlgorithm;
+import org.zetool.common.algorithm.template.DefaultParameterTemplateSet;
+import org.zetool.common.algorithm.template.ParameterTemplateSet;
 
 /**
  * The abstract base class for algorithms that read instances out of files.
  *
  * @author Martin Groß
+ * @param <T>
  */
 public abstract class InputFileReader<T> extends AbstractAlgorithm<File, T> {
 
@@ -36,10 +40,12 @@ public abstract class InputFileReader<T> extends AbstractAlgorithm<File, T> {
         SPEED, MEMORY;
     }
 
+    private final static String OPTIMIZATION = "Optimization";
+
     /**
      * Stores the optimization goal.
      */
-    private final Parameter<OptimizationHint> optimizationHint;
+    private Parameter<OptimizationHint> optimizationHint;
 
     /**
      * Creates a new input file reader and creates a parameter to specify an optimization goal by the user. It is up to
@@ -47,7 +53,31 @@ public abstract class InputFileReader<T> extends AbstractAlgorithm<File, T> {
      */
     protected InputFileReader() {
         super();
-        optimizationHint = getParameterSet().addParameter("Optimization", "Specifies whether the reader should try to conserve runtime or memory", OptimizationHint.SPEED);
+        optimizationHint = new Parameter<>(OPTIMIZATION, OptimizationHint.SPEED);
+    }
+
+    private final static ParameterTemplateSet tps = new DefaultParameterTemplateSet.Builder().withParameter(
+            OPTIMIZATION, "Specifies whether the reader should try to conserve runtime or memory",
+            OptimizationHint.SPEED, (Object[]) OptimizationHint.values()).build();
+
+    /**
+     * Returns the template set with the parameters for file reading. The available optimization parameters include
+     * {@link OptimizationHint} specifying whether the loaded datastructure created from the input file should be
+     * optimized for speed or memory size.
+     *
+     * @return the supported parameters by the algorithm
+     */
+    @Override
+    public ParameterTemplateSet getParameters() {
+        return tps;
+    }
+
+    @Override
+    public void setParameterSet(ParameterSet parameterSet) {
+        super.setParameterSet(parameterSet);
+        optimizationHint = (Parameter<OptimizationHint>) parameterSet.stream()
+                .filter(parameter -> parameter.getName().equals(OPTIMIZATION))
+                .findAny().orElseThrow(IllegalArgumentException::new);
     }
 
     /**
@@ -84,7 +114,7 @@ public abstract class InputFileReader<T> extends AbstractAlgorithm<File, T> {
      * @param hint the optimization hint.
      */
     public void setOptimization(OptimizationHint hint) {
-        optimizationHint.setValue(hint);
+        optimizationHint = new Parameter<>(OPTIMIZATION, hint);
     }
 
     /**
