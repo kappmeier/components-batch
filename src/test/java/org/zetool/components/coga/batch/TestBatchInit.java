@@ -58,7 +58,7 @@ public class TestBatchInit {
      */
     @Test
     public void tryLoadingNonMatchingFile() throws IOException {
-    // Initialize a batch object,
+        // Initialize a batch object,
         // define input reader
         // define an input file first
 
