@@ -32,7 +32,8 @@ jobs:
       with:
         repositories: '[
         { "id": "github", "name": "GitHub zetool Apache Maven Packages", "url": "https://maven.pkg.github.com/zetool/common" },
-        { "id": "tweety", "name": "TweetyProject", "url": "https://tweetyproject.org/mvn" }
+        { "id": "tweety", "name": "TweetyProject", "url": "https://tweetyproject.org/mvn" },
+        { "id": "ekito-public-releases", "name": "Ekito", "url": "https://raw.github.com/Ekito/maven-repo/master/releases" }
         ]'
         servers: '[{ "id": "github", "username": "zetool-bot", "password": "${GITHUB_TOKEN}" }]'
     - name: Build with Maven
