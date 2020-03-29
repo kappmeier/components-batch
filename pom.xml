@@ -21,7 +21,7 @@
 
     <groupId>org.zetool</groupId>
     <artifactId>components-batch</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>zetool-components-batch</name>
     <url>https://zetool.org</url>
 
@@ -111,6 +111,6 @@
     <scm>
         <connection>scm:git:https://github.com/zetool/components-batch.git</connection>
         <url>https://github.com/zetool/components-batch.git</url>
-        <tag>components-batch-0.1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 </project>
